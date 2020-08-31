@@ -30,5 +30,30 @@ public class ticTacToe {
             System.out.println();
         }
         System.out.println("---------");
+
+        int inRow;
+        int inCol;
+        boolean wins = false;
+        for (int i = 0; i < 3; i++) {
+            if (matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2]) {
+                inRow = 3;
+                wins = true;
+            }
+            if (matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i]) {
+                inCol = 3;
+                wins = true;
+            }
+        }
+        int inDia;
+        if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]) {
+            inDia = 3;
+            wins = true;
+        } else if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]) {
+            inDia = 3;
+            wins = true;
+        }
+        if (wins) {
+            System.out.println("Wins");
+        }
     }
 }
