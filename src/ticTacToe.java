@@ -1,9 +1,7 @@
-package tictactoe;
-
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class Main {
+public class ticTacToe {
     public static void main(String[] args) {
         // write your code here
         Scanner scanner = new Scanner(System.in);
