@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class ticTacToe {
     public static void main(String[] args) {
@@ -16,11 +15,7 @@ public class ticTacToe {
             }
         }
 
-        //char[] matrix = scanner.nextLine().toCharArray();
         System.out.println("---------");
-        //for (int i = 0; i < 9; i += 3) {
-        //    System.out.println(String.format("| %c %c %c |", matrix[i], matrix[i+1], matrix[i+2]));
-        //}
         for (int i = 0; i < 3; i++) {
             System.out.print("| ");
             for (int j = 0; j < 3; j++) {
@@ -33,24 +28,59 @@ public class ticTacToe {
 
         char winer = ' ';
         boolean wins = false;
+        boolean once1 = false;
+        boolean once2 = false;
+        int empty = 0;
+        int xs = 0;
+        int os = 0;
+        int numberOfWiners = 0;
         for (int i = 0; i < 3; i++) {
-            if (matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2]) {
+            if (matrix[i][0] == matrix[i][1] && matrix[i][1] == matrix[i][2] && matrix[i][0] != '_') {
                 wins = true;
                 winer = matrix[i][0];
-            }
-            if (matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i]) {
+                numberOfWiners++;
+            } else if (matrix[0][i] == matrix[1][i] && matrix[1][i] == matrix[2][i] && matrix[0][i] != '_') {
                 wins = true;
                 winer = matrix[0][i];
-            } else if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]) {
+                numberOfWiners++;
+            } else if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[0][0] != '_') {
                 wins = true;
                 winer = matrix[1][1];
-            } else if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]) {
+                if (once1 == false) {
+                    once1 = true;
+                    numberOfWiners++;
+                }
+            } else if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0] && matrix[1][1] != '_') {
                 wins = true;
                 winer = matrix[1][1];
+                if (once2 == false) {
+                    once2 = true;
+                    numberOfWiners++;
+                }
             }
-            if (wins) {
+            for (int j = 0; j < 3; j++) {
+                if (matrix[i][j] == '_') {
+                    empty++;
+                } else if (matrix[i][j] == 'X') {
+                    xs++;
+                } else if (matrix[i][j] == 'O') {
+                    os++;
+                }
+            }
+            if ((Math.abs(xs - os) > 1 && i == 2) || numberOfWiners > 1) {
+                System.out.println("Impossible");
+                break;
+            }
+            if (wins && i == 2) {
                 System.out.println(winer + " wins");
                 break;
+            }
+            if (xs + os == 9) {
+                System.out.println("Draw");
+                break;
+            }
+            if (xs + os + empty == 9) {
+                System.out.println("Game not finished");
             }
         }
     }
