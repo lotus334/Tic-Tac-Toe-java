@@ -25,7 +25,7 @@ public class ticTacToe {
             System.out.println();
         }
         System.out.println("---------");
-
+        /*
         char winer = ' ';
         boolean wins = false;
         boolean once1 = false;
@@ -83,5 +83,51 @@ public class ticTacToe {
                 System.out.println("Game not finished");
             }
         }
+        */
+        int x;
+        int y;
+        boolean flag = false;
+        /*
+        do {
+            System.out.println("Enter the coordinates:");
+            xs = scanner.next();
+            ys = scanner.next();
+            if (matrix[Math.abs(3-y)][x-1] == '_') {
+                flag = true;
+                matrix[Math.abs(3-y)][x-1] = 'X';
+            } else {
+                System.out.println("This cell is occupied! Choose another one!");
+            }
+        } while (!flag);
+        */
+
+        do {
+            if (scanner.hasNextInt()) {
+                x = scanner.nextInt();
+                y = scanner.nextInt();
+                if (x < 1 || x > 3 || y < 1 || y > 3) {
+                    System.out.println("Coordinates should be from 1 to 3!");
+                } else if (matrix[Math.abs(3-y)][x-1] == '_') {
+                    matrix[Math.abs(3-y)][x-1] = 'X';
+                    flag = true;
+                } else {
+                    System.out.println("This cell is occupied! Choose another one!");
+                }
+            } else {
+                System.out.println("You should enter numbers!");
+                scanner.nextLine();
+            }
+        } while (!flag);
+
+        System.out.println("---------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.print("|");
+            System.out.println();
+        }
+        System.out.println("---------");
     }
 }
